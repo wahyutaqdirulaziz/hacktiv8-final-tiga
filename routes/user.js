@@ -2,6 +2,6 @@ const express       = require('express');
 const router        = express.Router();
 const userHandler   = require('../controller/userController');
 
-router.get('/');
+router.post('/', userHandler.register);
 
 module.exports = router;
