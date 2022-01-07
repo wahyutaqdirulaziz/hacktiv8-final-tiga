@@ -4,27 +4,27 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: DataTypes.INTEGER
       },
       title: {
-        type: Sequelize.STRING
+        type: DataTypes.STRING
       },
       price: {
-        type: Sequelize.NUMBER
+        type: DataTypes.NUMBER
       },
       stock: {
-        type: Sequelize.NUMBER
+        type: DataTypes.NUMBER
       },
       category_id: {
-        type: Sequelize.NUMBER
+        type: DataTypes.NUMBER
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: DataTypes.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: DataTypes.DATE
       }
   }, {
     tableName: 'Products'
