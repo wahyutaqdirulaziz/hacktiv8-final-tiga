@@ -201,6 +201,18 @@ class userController {
 
   }
 
+  // static topup = async (req, res) => {
+  //   const {
+  //     balance
+  //   } = req.body;
+
+  //   await User.update({
+  //     where : {
+  //       balance
+  //     }
+  //   })
+  // }
+
 }
 
 module.exports = userController;
