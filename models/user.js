@@ -43,11 +43,14 @@ module.exports = (sequelize, DataTypes) => {
     },
     gender: {
       type: DataTypes.STRING,
-      values: ['male', 'female'],
       allowNull: false,
       validate: {
         notNull: {
           msg: 'Gender tidak boleh kosong'
+        },
+        isIn : {
+          args : [['pria', 'wanita']],
+          msg: 'Gender harus diisi pria atau wanita'
         }
       }
     },
@@ -57,6 +60,10 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         notNull: {
           msg: 'Role tidak boleh kosong'
+        },
+        isIn: {
+          args: [['admin', 'customer']],
+          msg: 'Role harus diisi admin atau customer'
         }
       }
     },
@@ -83,7 +90,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     hooks: {
       beforeValidate: (User, options) => {
-        User.balance = '0';
+        User.balance = 'Rp. 0,00';
       }
     }
   }, {
