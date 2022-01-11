@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       sold_product_amount: {
-        type: Sequelize.NUMBER
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,

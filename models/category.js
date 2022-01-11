@@ -14,8 +14,33 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Category.init({
-    type: DataTypes.STRING,
-    sold_product_amount: DataTypes.NUMBER
+    type:{
+      type : DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: {
+            msg: 'Please enter your type !'
+        },
+        notEmpty: {
+            msg: 'Please enter your type !'
+        }
+    }
+    },
+    sold_product_amount: {
+      type : DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notNull: {
+            msg: 'Please enter your Product amount !'
+        },
+        notEmpty: {
+            msg: 'Please enter your Product amount !'
+        },
+        isInt: {
+          msg: "Product number required number !"
+        }
+    }
+    }
   }, {
     sequelize,
     modelName: 'Category',
