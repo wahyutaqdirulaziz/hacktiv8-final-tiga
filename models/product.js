@@ -24,11 +24,11 @@ module.exports = (sequelize, DataTypes) => {
         isInt: true,
         min: {
           args: 0,
-          msg: 'Stok tidak boleh kurang dari 0'
+          msg: 'Harga tidak boleh kurang dari 0'
         },
         max: {
           args: 50000000,
-          msg: 'Stok tidak boleh kurang dari 50000000'
+          msg: 'Harga tidak boleh kurang dari 50000000'
         }
       }
     },
@@ -37,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'STok tidak boleh kosong'
+          msg: 'Stok tidak boleh kosong'
         },
         isInt: true,
         min: {
