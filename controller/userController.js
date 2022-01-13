@@ -1,8 +1,7 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const {
-  User
-} = require('../models');
+const bcrypt  = require('bcrypt');
+const jwt     = require('jsonwebtoken');
+const rupiah  = require('../utils/formatMoney');
+const {User}  = require('../models');
 const {
   JWT_SECRET_KEY
 } = process.env;
@@ -14,7 +13,6 @@ class userController {
       email,
       password,
       gender,
-      role
     } = req.body;
 
     let newPassword = password;
@@ -34,7 +32,7 @@ class userController {
         full_name: result.full_name,
         email: result.email,
         gender: result.gender,
-        balance: result.balance,
+        balance: rupiah(result.balance),
         createdAt: result.createdAt
       }
       return res.status(201).json({
@@ -201,17 +199,28 @@ class userController {
 
   }
 
-  // static topup = async (req, res) => {
-  //   const {
-  //     balance
-  //   } = req.body;
+  static topup = async (req, res) => {
+    const {balance}   = req.body;
+    const {id}        = req.user;
+    //eturn console.log(id);
 
-  //   await User.update({
-  //     where : {
-  //       balance
-  //     }
-  //   })
-  // }
+    await User.update({
+      balance
+    }, {
+      where: {
+        id
+      }
+    }).then(() => {
+      return res.status(200).json({
+        message: `Your balance has been successfully updated to ${rupiah(balance)}`
+      })
+    }).catch(error => {
+      return res.status(400).json({
+        status: 'error',
+        message: error.message
+      });
+    })
+  }
 
 }
 
