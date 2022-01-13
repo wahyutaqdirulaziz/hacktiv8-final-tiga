@@ -70,13 +70,20 @@ module.exports = (sequelize, DataTypes) => {
     balance: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      defaultValue: 0,
       validate: {
         notNull: {
           msg: 'Balance tidak boleh kosong'
         },
         isInt: true,
-        max: 100000000,
-        min: 0
+        max: {
+          args: [100000000],
+          msg: 'Topup maximal hanya boleh 100000000'
+        },
+        min: {
+          args: [0],
+          msg: 'Topup minimal 0'
+        }
       }
     },
     createdAt: {
@@ -89,8 +96,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     hooks: {
-      beforeValidate: (User, options) => {
-        User.balance = 'Rp. 0,00';
+      beforeCreate: (User) => {
+        User.balance = '0';
       }
     }
   }, {
