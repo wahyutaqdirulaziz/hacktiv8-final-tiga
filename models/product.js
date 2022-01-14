@@ -17,15 +17,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     price: {
       type: DataTypes.NUMBER,
+      allowNull: false,
       validate: {
         notNull: {
           msg: 'Harga tidak boleh kosong'
         },
         isInt: true,
-        min: {
-          args: 0,
-          msg: 'Harga tidak boleh kurang dari 0'
-        },
+        min: 0,
         max: {
           args: 50000000,
           msg: 'Harga tidak boleh kurang dari 50000000'
