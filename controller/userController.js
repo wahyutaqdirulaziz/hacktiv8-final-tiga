@@ -74,7 +74,8 @@ class userController {
         const data = {
           id: result.id,
           email: result.email,
-          password: result.password
+          password: result.password,
+          role: result.role
         }
 
         await bcrypt.compare(password, result.password, async function (err, passed) {
