@@ -1,49 +1,54 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Category extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-    }
-  };
-  Category.init({
-    type:{
-      type : DataTypes.STRING,
+  const Category = sequelize.define('Category', {
+    id: {
       allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: DataTypes.INTEGER,
+    },
+    type: {
+      allowNull: false,
+      type: DataTypes.STRING,
       validate: {
         notNull: {
-            msg: 'Please enter your type !'
-        },
-        notEmpty: {
-            msg: 'Please enter your type !'
+          msg: "field 'type' is required"
         }
-    }
+      }
     },
     sold_product_amount: {
-      type : DataTypes.INTEGER,
       allowNull: false,
+      type: DataTypes.INTEGER,
       validate: {
         notNull: {
-            msg: 'Please enter your Product amount !'
+          msg: "field 'sold_product_amount' is required"
         },
-        notEmpty: {
-            msg: 'Please enter your Product amount !'
-        },
-        isInt: {
-          msg: "Product number required number !"
+        isNumeric: {
+          msg: "'sold_product_amount' value should be number"
         }
-    }
+      }
+    },
+    createdAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: DataTypes.DATE,
     }
   }, {
-    sequelize,
-    modelName: 'Category',
-  });
+    tableName: 'Categories',
+    hooks: {
+      beforeValidate: function (category) {
+        category.sold_product_amount = 0;
+      }
+    }
+  })
+
+  Category.associate = models => {
+    Category.hasMany(models.Product, { 
+      foreignKey: 'categoryId' 
+    })
+  }
+
   return Category;
-};
+}
