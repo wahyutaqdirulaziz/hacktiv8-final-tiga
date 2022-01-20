@@ -7,6 +7,7 @@ router.post('/register', userHandler.register);
 router.post('/login', userHandler.login);
 
 router.put('/:id', verifytoken, userHandler.update);
+router.patch('/topup', verifytoken, userHandler.topup);
 
 router.delete('/:id',verifytoken, userHandler.delete);
 
