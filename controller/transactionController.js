@@ -1,11 +1,11 @@
-const { Transaction, User, Product, Category } = require('../models');
+const { Transactions, User, Product, Category } = require('../models');
 const rupiah = require('../utils/formatMoney');
 
 class transactionController {
   static create = async (req, res) => {
     const { productId, quantity } = req.body;
     const { id } = req.user;
-    //return console.log(id);
+    // return console.log(id);
 
     await Product.findOne({
       where: {
@@ -24,7 +24,7 @@ class transactionController {
       } else {
         await User.findOne({
           where: {
-            id
+            id: id
           }
         }).then(async (data) => {
           if (data.balance < quantity * rsl.price) {
@@ -42,7 +42,7 @@ class transactionController {
                 balance: data.balance - rsl.price,
               }, {
                 where: {
-                  id
+                  id: id
                 }
               })
 
@@ -52,13 +52,40 @@ class transactionController {
                 }
               }).then(async (dt) => {
                 await Category.update({
-                  sold_product_amount: dt.sold_product_amount + quantity
+                  sold_product_amount: dt.sold_product_amount + quantity * rsl.price
                 }, {
                   where: {
-                    id: dt
+                    id: dt.id
                   }
-                }).then(lsp => {
-                  console.log(lsp)
+                }).then(async (data) => {
+                 var total_price = quantity * rsl.price;
+                 var userid=id;
+                  await Transactions.create({
+                    productId : productId,
+                    userId : id,
+                    quantity,
+                    total_price
+                  }).then(result => {
+                    return res.status(201).json({
+                      message: "you Have successfully purchase the product",
+                      transactionBil : {
+                        total_price : total_price,
+                        quantity : quantity,
+                        product : rsl.title                                                          
+                      }
+                    })
+                  }).catch(error => {
+                    const err = error.errors
+                    const errorList = err.map(d => {
+                      let obj = {}
+                      obj[d.path] = d.message
+                      return obj;
+                    })
+                    return res.status(400).json({
+                      status: 'error',
+                      message: errorList
+                    });
+                  });
                 }).catch(error =>{
                   res.json(error.message)
                 })
