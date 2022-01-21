@@ -52,26 +52,26 @@ class transactionController {
                 }
               }).then(async (dt) => {
                 await Category.update({
-                  sold_product_amount: dt.sold_product_amount + quantity * rsl.price
+                  sold_product_amount: dt.sold_product_amount + quantity
                 }, {
                   where: {
                     id: dt.id
                   }
                 }).then(async (data) => {
-                 var total_price = quantity * rsl.price;
-                 var userid=id;
+                  let total_price = quantity * rsl.price;
+                  let userid = id;
                   await Transactions.create({
-                    productId : productId,
-                    userId : id,
+                    productId: productId,
+                    userId: id,
                     quantity,
                     total_price
                   }).then(result => {
                     return res.status(201).json({
-                      message: "you Have successfully purchase the product",
-                      transactionBil : {
-                        total_price : total_price,
-                        quantity : quantity,
-                        product : rsl.title                                                          
+                      message: "You have successfully purchase the product",
+                      transactionBil: {
+                        total_price: rupiah(total_price),
+                        quantity: quantity,
+                        product_name: rsl.title
                       }
                     })
                   }).catch(error => {
@@ -86,7 +86,7 @@ class transactionController {
                       message: errorList
                     });
                   });
-                }).catch(error =>{
+                }).catch(error => {
                   res.json(error.message)
                 })
               })
@@ -101,7 +101,103 @@ class transactionController {
         message: error.message
       })
     })
+  }
 
+  static getAll = async (req, res) => {
+    const { id } = req.user;
+    //return console.log(id);
+
+    await Transactions.findAll({
+      where: {
+        userId: id
+      },
+      attributes: ['productId', 'userId', 'quantity', 'total_price', 'createdAt', 'updatedAt'],
+      include: [
+        {
+          model: Product,
+          attributes: ['id', 'title', 'price', 'stock', 'categoryId']
+        }
+      ]
+    }).then((result) => {
+      result.map(dt => {
+        dt.total_price = rupiah(dt.total_price)
+        dt.Product.price = rupiah(dt.Product.price)
+      })
+      return res.status(200).json({
+        transactionsHistories: result
+      })
+    })
+  }
+
+  static getAllAdmin = async (req, res) => {
+    const {id}      = req.user;
+    const { role }  = req.user;
+
+    if (role !== 'admin') {
+      return res.status(401).json({
+        status: "error",
+        message: "user unauthorized"
+      })
+    } else {
+      await Transactions.findAll({
+        where: {
+          userId: id
+        },
+        attributes: ['productId', 'userId', 'quantity', 'total_price', 'createdAt', 'updatedAt'],
+        include: [
+          {
+            model: Product,
+            attributes: ['id', 'title', 'price', 'stock', 'categoryId']
+          },
+          {
+            model: User,
+            attributes: ['id', 'email', 'balance', 'gender', 'role']
+          }
+        ]
+      }).then((result) => {
+        result.map(dt => {
+          dt.total_price = rupiah(dt.total_price)
+          dt.Product.price = rupiah(dt.Product.price)
+        })
+        return res.status(200).json({
+          transactionsHistories: result
+        })
+      })
+    }
+  }
+
+  static getTransaction = async (req, res) => {
+    const {transactionId}     = req.params;
+    const {role, id}          = req.user;
+    //return console.log(role);
+    await Transactions.findOne({
+      where: {
+        id: transactionId, userId: id
+      }, attributes: ['productId', 'userId', 'quantity', 'total_price', 'createdAt', 'updatedAt'],
+      include: [
+        {
+          model: Product,
+          attributes: ['id', 'title', 'price', 'stock', 'categoryId']
+        }
+      ]
+    }).then((result) => {
+      //return console.log(result.userId);
+      result.total_price = rupiah(result.total_price)
+      result.Product.price = rupiah(result.Product.price)
+      if (result === null) {
+        return res.status(404).json({
+          status: 'error',
+          message: 'Transaction histories not found'
+        })
+      } else {
+        return res.status(200).json({
+          transactionsHistories: result
+        })
+      }
+    }).catch((error) => {
+      return res.status(500).json({ message: error.message})
+    })
+    
   }
 
 }
