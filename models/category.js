@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     sold_product_amount: {
       allowNull: false,
+      defaultValue: 0,
       type: DataTypes.INTEGER,
       validate: {
         notNull: {
