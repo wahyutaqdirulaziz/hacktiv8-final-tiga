@@ -1,0 +1,550 @@
+{
+	"info": {
+		"_postman_id": "e90aee52-35c6-4486-aea4-897bbbe488b6",
+		"name": "Final Project 3 - Hacktiv8",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sibli123@admin.com\",\r\n    \"password\": \"sibli123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://final-tiga.herokuapp.com/api/users/login",
+							"protocol": "https",
+							"host": [
+								"final-tiga",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"full_name\": \"Shobri\",\r\n    \"email\" : \"sobri1234@gmail.com\",\r\n    \"password\": \"sobri123\",\r\n    \"gender\": \"pria\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/users/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJzaWJsaTEyM0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRTd1p1c0FhZWpLQkY3bmdGWU9BQURlcnpOTTNaV3JuNHVJMi5FWThHU3oyVEdQTXBBMWV6dSIsImlhdCI6MTY0MjA4MDIwMSwiZXhwIjoxNjQyMDgzODAxfQ.LkEJkzgTOni41DTBeeDJnZ6wTIbyE18zGtZbAvj-U5Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"full_name\": \"Moh. Siblil Aula\",\r\n    \"email\": \"sibli1234@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/users/5",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJzaWJsaTEyM0BnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRTd1p1c0FhZWpLQkY3bmdGWU9BQURlcnpOTTNaV3JuNHVJMi5FWThHU3oyVEdQTXBBMWV6dSIsImlhdCI6MTY0MTA5MzE2OSwiZXhwIjoxNjQxMDk2NzY5fQ.7BamXDQ3TSaZRiKPI31pJGF3WwIfG85RgUaGdehrsrM",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/users/3",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Patch Topup",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzb2JyaTEyMzRAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkMDJPTC9BMThyVlhlUi5YMkRySDhhLnhmbER4ZjVOaGpKaGxVN0lIblB1YXZzWFZNV2VnL3UiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2NDI3NzcxMTYsImV4cCI6MTY0Mjc4MDcxNn0.covXt2VUVvMI6A3ysH1jZpJzSySP_EQay1xM0wj-vEo",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"balance\": 20000000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/users/topup",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"topup"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzaWJsaTEyM0BhZG1pbi5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRnQXVDUmUwUnQ0T29zdGtIejBxOU9lcjM3MzhnRVlpWm42bmx5ajlJSVZleXVyZFVRMVZOcSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY0Mjc4NTE0OCwiZXhwIjoxNjQyNzg4NzQ4fQ.ywKg4q_2wzErTgm-Nv8HXmsaD8Ptar66w_y0cDAB_JM",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Panci\",\r\n    \"price\": 25000,\r\n    \"stock\": 100,\r\n    \"categoryId\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/products",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzaWJsaTEyM0BhZG1pbi5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRnQXVDUmUwUnQ0T29zdGtIejBxOU9lcjM3MzhnRVlpWm42bmx5ajlJSVZleXVyZFVRMVZOcSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY0MjY5OTM4MywiZXhwIjoxNjQyNzAyOTgzfQ.hNBH2ADBhIPcPgFlUsSTUx1StsRRSYlg-mZ0xWvHChU",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Laptop\",\r\n    \"price\": 2500000,\r\n    \"stock\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/products/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJzaWJsaTEyMzRAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkU3dadXNBYWVqS0JGN25nRllPQUFEZXJ6Tk0zWldybjR1STIuRVk4R1N6MlRHUE1wQTFlenUiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2NDIyNDY3ODMsImV4cCI6MTY0MjI1MDM4M30.WhUGrcHRAk-kkfh4AsLejj1U4xZYOZCIxKi5LzGo-k4",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Laptop\",\r\n    \"price\": 2000000,\r\n    \"stock\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/products/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzaWJsaTEyM0BhZG1pbi5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRqNU1NdUNIZERORlZ3dDRaVDIwUHNPVEV0RUp4bm1zRGtvWXdaUEhFcGVSdUVMaHo4VTRxZSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY0MjY4Njc3MCwiZXhwIjoxNjQyNjkwMzcwfQ.mhR_DAafj4gqQNy7Hx55x4qgCQUMdyMh_q9twiLmz_0",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/products",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzaWJsaTEyM0BhZG1pbi5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQzZXZRR09sdktNcWxoYzdhTWVZOHRlVi5NUGRzLzNmQnN5SjhYbE1lcm4ydGtSbWNBTzRaMiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY0Mjg1MTIyNCwiZXhwIjoxNjQyODU0ODI0fQ.Qzs_y5eCwgk0FYWkcl2XoLs5M9sjR_Xjjkp0-Y69EFY",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"Alat Dapur\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://final-tiga.herokuapp.com/api/categories/",
+							"protocol": "https",
+							"host": [
+								"final-tiga",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"api",
+								"categories",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzaWJsaTEyM0BhZG1pbi5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRnQXVDUmUwUnQ0T29zdGtIejBxOU9lcjM3MzhnRVlpWm42bmx5ajlJSVZleXVyZFVRMVZOcSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY0Mjg1MTQ4NSwiZXhwIjoxNjQyODU1MDg1fQ.oxBBIXh7UtXEf27weisaY8UdsCGB0si_q6P68f7EMxc",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/categories/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzaWJsaTEyM0BhZG1pbi5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRnQXVDUmUwUnQ0T29zdGtIejBxOU9lcjM3MzhnRVlpWm42bmx5ajlJSVZleXVyZFVRMVZOcSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY0Mjg1MTQ4NSwiZXhwIjoxNjQyODU1MDg1fQ.oxBBIXh7UtXEf27weisaY8UdsCGB0si_q6P68f7EMxc",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type\": \"Pakaian Pria\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/categories/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Copy",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzaWJsaTEyM0BhZG1pbi5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRnQXVDUmUwUnQ0T29zdGtIejBxOU9lcjM3MzhnRVlpWm42bmx5ajlJSVZleXVyZFVRMVZOcSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY0Mjg1MTQ4NSwiZXhwIjoxNjQyODU1MDg1fQ.oxBBIXh7UtXEf27weisaY8UdsCGB0si_q6P68f7EMxc",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/categories/2",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"categories",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzb2JyaTEyMzRAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkMDJPTC9BMThyVlhlUi5YMkRySDhhLnhmbER4ZjVOaGpKaGxVN0lIblB1YXZzWFZNV2VnL3UiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2NDI3NzcxMTYsImV4cCI6MTY0Mjc4MDcxNn0.covXt2VUVvMI6A3ysH1jZpJzSySP_EQay1xM0wj-vEo",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": 3,\r\n    \"quantity\": 8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/api/transactions",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzb2JyaTEyMzRAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkMDJPTC9BMThyVlhlUi5YMkRySDhhLnhmbER4ZjVOaGpKaGxVN0lIblB1YXZzWFZNV2VnL3UiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2NDI3Nzk4ODAsImV4cCI6MTY0Mjc4MzQ4MH0.I1ehOpzGonin9SAI1-gGrZryamdqyEi2tT6VBJxOUkU",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/transactions/user",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"transactions",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Admin",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzaWJsaTEyM0BhZG1pbi5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCRnQXVDUmUwUnQ0T29zdGtIejBxOU9lcjM3MzhnRVlpWm42bmx5ajlJSVZleXVyZFVRMVZOcSIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTY0Mjc4MDQxMywiZXhwIjoxNjQyNzg0MDEzfQ.tsV_vVJaEggvMTmW5it26o_5Vi386yJVNM1SZ6KqQHo",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/transactions/admin",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"transactions",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Detail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJzb2JyaTEyMzRAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkMDJPTC9BMThyVlhlUi5YMkRySDhhLnhmbER4ZjVOaGpKaGxVN0lIblB1YXZzWFZNV2VnL3UiLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2NDI3ODQzODEsImV4cCI6MTY0Mjc4Nzk4MX0.HeAp3LJpdzNEvnTRATW5qP1PZN1UxXu8jmH4RWup1TI",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:3000/api/transactions/6",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"transactions",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
